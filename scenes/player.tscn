@@ -1,14 +1,77 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=13 format=2]
 
-[ext_resource path="res://scenes/player.gd" type="Script" id=1]
+[ext_resource path="res://scripts/player.gd" type="Script" id=1]
 [ext_resource path="res://Images/chars.png" type="Texture" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 14, 14 )
 
-[sub_resource type="Animation" id=5]
-resource_name = "Idle"
+[sub_resource type="Animation" id=10]
+resource_name = "fall"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 14 ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "fall_left"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 11 ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "fall_right"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 9 ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "idle"
 length = 0.45
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 12 ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "jump"
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -22,8 +85,39 @@ tracks/0/keys = {
 "values": [ 13 ]
 }
 
-[sub_resource type="Animation" id=2]
-resource_name = "walk_left"
+[sub_resource type="Animation" id=9]
+resource_name = "jump_left"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 10 ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "jump_right"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 8 ]
+}
+
+[sub_resource type="Animation" id=4]
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -38,8 +132,7 @@ tracks/0/keys = {
 "values": [ 4, 5, 6 ]
 }
 
-[sub_resource type="Animation" id=3]
-resource_name = "walk_right"
+[sub_resource type="Animation" id=5]
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -54,22 +147,6 @@ tracks/0/keys = {
 "values": [ 0, 1, 2 ]
 }
 
-[sub_resource type="Animation" id=4]
-resource_name = "walk_up"
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
-"update": 1,
-"values": [ 16, 19, 16, 17 ]
-}
-
 [node name="Player" type="KinematicBody2D"]
 script = ExtResource( 1 )
 
@@ -81,10 +158,15 @@ shape = SubResource( 1 )
 texture = ExtResource( 2 )
 vframes = 7
 hframes = 16
-frame = 13
+frame = 15
 
 [node name="Animation" type="AnimationPlayer" parent="."]
-anims/Idle = SubResource( 5 )
-anims/walk_left = SubResource( 2 )
-anims/walk_right = SubResource( 3 )
-anims/walk_up = SubResource( 4 )
+anims/fall = SubResource( 10 )
+anims/fall_left = SubResource( 7 )
+anims/fall_right = SubResource( 8 )
+anims/idle = SubResource( 2 )
+anims/jump = SubResource( 3 )
+anims/jump_left = SubResource( 9 )
+anims/jump_right = SubResource( 6 )
+anims/walk_left = SubResource( 4 )
+anims/walk_right = SubResource( 5 )
